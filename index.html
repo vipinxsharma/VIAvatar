@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VI Business - Enterprise Solutions for Growing Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --vi-red: #E60000;
+            --vi-dark: #1A1A1A;
+            --vi-gray: #4A4A4A;
+            --vi-light-gray: #F5F5F5;
+            --vi-white: #FFFFFF;
+            --vi-accent: #FF3333;
+            --vi-gradient: linear-gradient(135deg, #E60000 0%, #FF3333 100%);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--vi-white);
+            color: var(--vi-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(230, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--vi-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--vi-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            background: var(--vi-dark);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(230, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 51, 51, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--vi-white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-content h1 .gradient-text {
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        .cta-primary {
+            background: var(--vi-gradient);
+            color: var(--vi-white);
+            box-shadow: 0 4px 20px rgba(230, 0, 0, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--vi-white);
+            border: 2px solid var(--vi-red);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(230, 0, 0, 0.1);
+        }
+
+        /* Avatar Container */
+        .avatar-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(230, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(230, 0, 0, 0.1) 90deg,
+                transparent 180deg,
+                rgba(255, 51, 51, 0.1) 270deg,
+                transparent 360deg
+            );
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--vi-light-gray);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            color: var(--vi-gray);
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--vi-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.1);
+            border-color: var(--vi-red);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--vi-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--vi-dark);
+        }
+
+        .feature-card p {
+            color: var(--vi-gray);
+            line-height: 1.7;
+        }
+
+        /* Solutions Section */
+        .solutions {
+            padding: 6rem 2rem;
+            background: var(--vi-white);
+        }
+
+        .solutions-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, var(--vi-dark) 0%, #2A2A2A 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            color: var(--vi-white);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--vi-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .solution-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .solution-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--vi-red);
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--vi-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(230, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255, 51, 51, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--vi-white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--vi-white);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--vi-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .avatar-container {
+                height: 500px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .avatar-container {
+                height: 400px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1,
+        .hero-content p,
+        .cta-buttons {
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .hero-content h1 {
+            animation-delay: 0.2s;
+        }
+
+        .hero-content p {
+            animation-delay: 0.4s;
+        }
+
+        .cta-buttons {
+            animation-delay: 0.6s;
+        }
+
+        .avatar-container {
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Vi Business</div>
+            <ul class="nav-links">
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Avatar -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>
+                    Powering Your<br>
+                    <span class="gradient-text">Digital Transformation</span>
+                </h1>
+                <p>
+                    Enterprise-grade connectivity, cloud solutions, and communications platforms designed to accelerate your business growth.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-primary">Start Assessment</a>
+                    <a href="#solutions" class="cta-secondary">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="avatar-container">
+                <iframe 
+                    src="https://embed.liveavatar.com/v1/23b84715-937f-4682-9455-f3991631f318" 
+                    allow="microphone" 
+                    title="LiveAvatar Embed"
+                    loading="eager">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Why Choose Vi Business</h2>
+            <p class="section-subtitle">Trusted by enterprises across industries for mission-critical solutions</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Enterprise-Grade Reliability</h3>
+                    <p>99.9% uptime SLA with redundant infrastructure and 24/7 monitoring to keep your business always connected.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Security & Compliance</h3>
+                    <p>Bank-grade security protocols, ISO certifications, and compliance with regulatory standards to protect your data.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Scalable Solutions</h3>
+                    <p>Flexible infrastructure that grows with your business, from startups to large enterprises with multiple locations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Expert Support</h3>
+                    <p>Dedicated account managers and technical support team available round-the-clock to ensure smooth operations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Pan-India Coverage</h3>
+                    <p>Extensive network coverage across urban and rural India with local presence for faster deployment.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Advanced dashboards and reporting tools to monitor performance, track KPIs, and make data-driven decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions" id="solutions">
+        <div class="solutions-container">
+            <h2 class="section-title">Our Enterprise Solutions</h2>
+            <p class="section-subtitle">Comprehensive digital infrastructure for modern businesses</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <h3>Connectivity</h3>
+                    <ul>
+                        <li>Internet Leased Lines</li>
+                        <li>SD-WAN Solutions</li>
+                        <li>Enterprise Wi-Fi</li>
+                        <li>5G Connectivity</li>
+                        <li>MPLS Networks</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Cloud Services</h3>
+                    <ul>
+                        <li>Public & Hybrid Cloud</li>
+                        <li>Cloud Migration</li>
+                        <li>Disaster Recovery</li>
+                        <li>Managed Hosting</li>
+                        <li>Backup Solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Communications</h3>
+                    <ul>
+                        <li>CPaaS Platform</li>
+                        <li>CCaaS Solutions</li>
+                        <li>SIP Trunking</li>
+                        <li>Cloud Telephony</li>
+                        <li>WhatsApp Business API</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Security</h3>
+                    <ul>
+                        <li>Managed Firewalls</li>
+                        <li>Secure Email Gateway</li>
+                        <li>DDoS Protection</li>
+                        <li>Security Operations Center</li>
+                        <li>Threat Intelligence</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>IoT Solutions</h3>
+                    <ul>
+                        <li>Fleet Management</li>
+                        <li>Asset Tracking</li>
+                        <li>Smart Metering</li>
+                        <li>Industrial IoT</li>
+                        <li>Connected Devices</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h3>Digital Workplace</h3>
+                    <ul>
+                        <li>Unified Communications</li>
+                        <li>Video Conferencing</li>
+                        <li>Collaboration Tools</li>
+                        <li>Mobile Device Management</li>
+                        <li>Employee Productivity Apps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Take the Ready For Next assessment and discover your digital readiness score</p>
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="#" class="cta-primary">Get Started Now</a>
+            <a href="#" class="cta-secondary">Schedule Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Connectivity</a></li>
+                    <li><a href="#">Cloud Services</a></li>
+                    <li><a href="#">Communications</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">IoT</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Industries</h4>
+                <ul>
+                    <li><a href="#">Banking & Finance</a></li>
+                    <li><a href="#">Healthcare</a></li>
+                    <li><a href="#">Retail</a></li>
+                    <li><a href="#">Manufacturing</a></li>
+                    <li><a href="#">Education</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">White Papers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vodafone Idea Limited. All rights reserved. | Vi Business - Enterprise Solutions</p>
+        </div>
+    </footer>
+</body>
+</html>
