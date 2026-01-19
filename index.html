@@ -15,14 +15,13 @@
         }
 
         :root {
-            --vi-red: #E92737;
-            --vi-yellow: #FFC300;
+            --vi-red: #E60000;
             --vi-dark: #1A1A1A;
             --vi-gray: #4A4A4A;
             --vi-light-gray: #F5F5F5;
             --vi-white: #FFFFFF;
             --vi-accent: #FF3333;
-            --vi-gradient: linear-gradient(135deg, #E92737 0%, #FF3333 100%);
+            --vi-gradient: linear-gradient(135deg, #E60000 0%, #FF3333 100%);
         }
 
         body {
@@ -42,7 +41,7 @@
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             z-index: 1000;
-            border-bottom: 1px solid rgba(233, 39, 55, 0.1);
+            border-bottom: 1px solid rgba(230, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -54,21 +53,13 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo svg {
-            width: 54px;
-            height: 40px;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: var(--vi-white);
-            letter-spacing: -0.5px;
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
         }
 
         .nav-links {
@@ -120,7 +111,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(233, 39, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(230, 0, 0, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 50%, rgba(255, 51, 51, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
@@ -181,12 +172,12 @@
         .cta-primary {
             background: var(--vi-gradient);
             color: var(--vi-white);
-            box-shadow: 0 4px 20px rgba(233, 39, 55, 0.3);
+            box-shadow: 0 4px 20px rgba(230, 0, 0, 0.3);
         }
 
         .cta-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(233, 39, 55, 0.4);
+            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.4);
         }
 
         .cta-secondary {
@@ -196,22 +187,66 @@
         }
 
         .cta-secondary:hover {
-            background: rgba(233, 39, 55, 0.1);
+            background: rgba(230, 0, 0, 0.1);
         }
 
-        /* Avatar Container with Iframe */
+        /* Avatar Container with Tabs */
         .avatar-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .avatar-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .avatar-tab {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .avatar-tab:hover {
+            background: rgba(230, 0, 0, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .avatar-tab.active {
+            background: var(--vi-gradient);
+            color: var(--vi-white);
+            box-shadow: 0 4px 12px rgba(230, 0, 0, 0.3);
+        }
+
+        .avatar-container {
             position: relative;
             width: 100%;
             height: 600px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(233, 39, 55, 0.2);
+            border: 1px solid rgba(230, 0, 0, 0.2);
             background: rgba(255, 255, 255, 0.05);
+            display: none;
         }
 
-        .avatar-wrapper::before {
+        .avatar-container.active {
+            display: block;
+        }
+
+        .avatar-container::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -221,14 +256,13 @@
             background: conic-gradient(
                 from 0deg,
                 transparent 0deg,
-                rgba(233, 39, 55, 0.1) 90deg,
+                rgba(230, 0, 0, 0.1) 90deg,
                 transparent 180deg,
                 rgba(255, 51, 51, 0.1) 270deg,
                 transparent 360deg
             );
             animation: rotate 20s linear infinite;
             pointer-events: none;
-            z-index: 1;
         }
 
         @keyframes rotate {
@@ -237,211 +271,35 @@
             }
         }
 
-        .avatar-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
         .avatar-container iframe {
             width: 100%;
             height: 100%;
             border: none;
             position: relative;
             z-index: 1;
-            aspect-ratio: 16/9;
-            object-fit: cover;
         }
 
-        /* AI Preview Overlay */
-        .avatar-preview {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* D-ID Agent Container */
+        #did-agent-container {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            cursor: pointer;
-        }
-
-        .avatar-preview.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .avatar-preview-content {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .vi-logo-large {
-            width: 120px;
-            height: auto;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 4px 20px rgba(233, 39, 55, 0.3));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .ai-avatar-placeholder {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
             position: relative;
+            z-index: 1;
         }
 
-        .ai-circle {
+        .avatar-label {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-        }
-
-        .ai-circle-1 {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(233, 39, 55, 0.2) 0%, transparent 70%);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .ai-circle-2 {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(233, 39, 55, 0.3) 0%, transparent 70%);
-            animation: pulse 2s ease-in-out infinite 0.3s;
-        }
-
-        .ai-circle-3 {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(233, 39, 55, 0.5) 0%, transparent 70%);
-            animation: pulse 2s ease-in-out infinite 0.6s;
-        }
-
-        .ai-core {
-            width: 60px;
-            height: 60px;
-            background: var(--vi-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(233, 39, 55, 0.6);
-        }
-
-        .ai-core::before {
-            content: '👤';
-            font-size: 2rem;
-            filter: brightness(0) invert(1);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        .preview-title {
-            font-size: 2rem;
-            font-weight: 800;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
             color: var(--vi-white);
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .preview-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .preview-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            color: var(--vi-yellow);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
             font-weight: 600;
+            z-index: 10;
+            backdrop-filter: blur(10px);
         }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--vi-yellow);
-            border-radius: 50%;
-            animation: blink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .start-conversation-btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: var(--vi-gradient);
-            color: var(--vi-white);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(233, 39, 55, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin: 0 auto;
-        }
-
-        .start-conversation-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(233, 39, 55, 0.5);
-        }
-
-        .start-conversation-btn::after {
-            content: '→';
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .start-conversation-btn:hover::after {
-            transform: translateX(5px);
-        }
-
-        .preview-hint {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            font-style: italic;
-        }
-
-        /* HeyGen Floating Widget Styles */
-        /* Widget styles are injected by the HeyGen script */
 
         /* Features Section */
         .features {
@@ -486,7 +344,7 @@
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(233, 39, 55, 0.1);
+            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.1);
             border-color: var(--vi-red);
         }
 
@@ -607,7 +465,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 30% 50%, rgba(233, 39, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 50%, rgba(230, 0, 0, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 70% 50%, rgba(255, 51, 51, 0.15) 0%, transparent 50%);
             pointer-events: none;
         }
@@ -688,7 +546,7 @@
                 font-size: 3rem;
             }
 
-            .avatar-wrapper {
+            .avatar-container {
                 height: 500px;
             }
 
@@ -700,28 +558,8 @@
                 font-size: 2rem;
             }
 
-            .preview-title {
-                font-size: 1.5rem;
-            }
-
-            .ai-avatar-placeholder {
-                width: 150px;
-                height: 150px;
-            }
-
-            .ai-circle-1 {
-                width: 150px;
-                height: 150px;
-            }
-
-            .ai-circle-2 {
-                width: 110px;
-                height: 110px;
-            }
-
-            .ai-circle-3 {
-                width: 70px;
-                height: 70px;
+            .avatar-tabs {
+                flex-direction: column;
             }
         }
 
@@ -734,7 +572,7 @@
                 flex-direction: column;
             }
 
-            .avatar-wrapper {
+            .avatar-container {
                 height: 400px;
             }
         }
@@ -778,14 +616,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <svg width="54" height="40" viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M43.797 26.602h-9.478V0h9.478v26.602zM21.747 0l-6.135 24.789L9.478 0H0l6.584 26.602H24.64L31.224 0h-9.477z" fill="#E92737"/>
-                    <path d="M39.057 40a5.155 5.155 0 0 0 5.159-5.152 5.156 5.156 0 0 0-5.159-5.153 5.156 5.156 0 0 0-5.159 5.153A5.155 5.155 0 0 0 39.057 40z" fill="#FFC300"/>
-                    <path d="M48.952.931h-.37V0h4.85v.931h-1.825c.248.188.41.515.41.94 0 .983-.69 1.58-1.744 1.58s-1.744-.597-1.744-1.594c0-.388.161-.736.423-.924V.931zm1.32 1.602c.571 0 .947-.335.947-.824 0-.488-.376-.83-.946-.83s-.938.327-.938.83c0 .504.375.824.938.824zM48.582 7.275v-.937h.47c-.322-.188-.523-.563-.523-1.024 0-.758.557-1.253 1.329-1.253h2.105v.93h-1.899c-.409 0-.703.27-.703.65 0 .409.322.697.75.697h1.852v.937h-3.38zM49.723 7.863v.805c-.301.034-.489.268-.489.615 0 .288.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.359-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.255-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002zM52.983 11.13c.3 0 .53.236.53.55a.53.53 0 1 1-1.061 0c0-.309.222-.55.53-.55zm-1.02.082v.937h-3.381v-.937h3.381zM51.963 12.924v.937h-.47c.328.187.523.562.523 1.024 0 .763-.55 1.259-1.328 1.259h-2.106v-.937h1.897c.41 0 .705-.262.705-.65 0-.409-.314-.696-.75-.696h-1.852v-.937h3.381zM49.729 20.09c-.732-.134-1.2-.775-1.2-1.606 0-1.146.899-1.736 1.751-1.736.853 0 1.738.522 1.738 1.668 0 1.145-.88 1.667-1.65 1.667a3.71 3.71 0 0 1-.302-.013v-2.425c-.475.066-.771.37-.771.837 0 .375.148.623.436.696v.91l-.002.003zm.925-2.432v1.494c.375-.027.676-.288.676-.736 0-.423-.208-.676-.676-.758zM49.723 20.506v.804c-.301.034-.489.27-.489.615 0 .288.14.489.328.489.69 0 .014-1.816 1.435-1.816.597 0 1.02.515 1.02 1.206 0 .81-.437 1.36-1.1 1.394v-.81c.288-.04.444-.302.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314 0-.792.463-1.386 1.194-1.42l-.002.002zM49.723 23.666v.804c-.301.035-.489.27-.489.616 0 .287.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.358-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002z" fill="#E92737"/>
-                </svg>
-                <span class="logo-text">Vi Business</span>
-            </div>
+            <div class="logo">Vi Business</div>
             <ul class="nav-links">
                 <li><a href="#solutions">Solutions</a></li>
                 <li><a href="#features">Features</a></li>
@@ -796,7 +627,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Avatar -->
+    <!-- Hero Section with Multiple Avatar Options -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
@@ -808,55 +639,34 @@
                     Enterprise-grade connectivity, cloud solutions, and communications platforms designed to accelerate your business growth.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#" class="cta-primary" onclick="startConversation(); return false;">Start Assessment</a>
+                    <a href="#" class="cta-primary">Start Assessment</a>
                     <a href="#solutions" class="cta-secondary">Explore Solutions</a>
                 </div>
             </div>
+            
+            <!-- Avatar Wrapper with Tabs -->
             <div class="avatar-wrapper">
-                <div class="avatar-container">
-                    <!-- AI Preview Overlay -->
-                    <div class="avatar-preview" id="avatarPreview">
-                        <div class="avatar-preview-content">
-                            <svg class="vi-logo-large" width="120" height="89" viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M43.797 26.602h-9.478V0h9.478v26.602zM21.747 0l-6.135 24.789L9.478 0H0l6.584 26.602H24.64L31.224 0h-9.477z" fill="#E92737"/>
-                                <path d="M39.057 40a5.155 5.155 0 0 0 5.159-5.152 5.156 5.156 0 0 0-5.159-5.153 5.156 5.156 0 0 0-5.159 5.153A5.155 5.155 0 0 0 39.057 40z" fill="#FFC300"/>
-                                <path d="M48.952.931h-.37V0h4.85v.931h-1.825c.248.188.41.515.41.94 0 .983-.69 1.58-1.744 1.58s-1.744-.597-1.744-1.594c0-.388.161-.736.423-.924V.931zm1.32 1.602c.571 0 .947-.335.947-.824 0-.488-.376-.83-.946-.83s-.938.327-.938.83c0 .504.375.824.938.824zM48.582 7.275v-.937h.47c-.322-.188-.523-.563-.523-1.024 0-.758.557-1.253 1.329-1.253h2.105v.93h-1.899c-.409 0-.703.27-.703.65 0 .409.322.697.75.697h1.852v.937h-3.38zM49.723 7.863v.805c-.301.034-.489.268-.489.615 0 .288.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.359-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.255-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002zM52.983 11.13c.3 0 .53.236.53.55a.53.53 0 1 1-1.061 0c0-.309.222-.55.53-.55zm-1.02.082v.937h-3.381v-.937h3.381zM51.963 12.924v.937h-.47c.328.187.523.562.523 1.024 0 .763-.55 1.259-1.328 1.259h-2.106v-.937h1.897c.41 0 .705-.262.705-.65 0-.409-.314-.696-.75-.696h-1.852v-.937h3.381zM49.729 20.09c-.732-.134-1.2-.775-1.2-1.606 0-1.146.899-1.736 1.751-1.736.853 0 1.738.522 1.738 1.668 0 1.145-.88 1.667-1.65 1.667a3.71 3.71 0 0 1-.302-.013v-2.425c-.475.066-.771.37-.771.837 0 .375.148.623.436.696v.91l-.002.003zm.925-2.432v1.494c.375-.027.676-.288.676-.736 0-.423-.208-.676-.676-.758zM49.723 20.506v.804c-.301.034-.489.27-.489.615 0 .288.14.489.328.489.69 0 .014-1.816 1.435-1.816.597 0 1.02.515 1.02 1.206 0 .81-.437 1.36-1.1 1.394v-.81c.288-.04.444-.302.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314 0-.792.463-1.386 1.194-1.42l-.002.002zM49.723 23.666v.804c-.301.035-.489.27-.489.616 0 .287.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.358-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002z" fill="#E92737"/>
-                            </svg>
-                            
-                            <div class="ai-avatar-placeholder">
-                                <div class="ai-circle ai-circle-1"></div>
-                                <div class="ai-circle ai-circle-2"></div>
-                                <div class="ai-circle ai-circle-3"></div>
-                                <div class="ai-circle ai-core"></div>
-                            </div>
+                <!-- Avatar Selection Tabs -->
+                <div class="avatar-tabs">
+                    <button class="avatar-tab active" data-avatar="heygen">Viktor Interactive</button>
+                    <button class="avatar-tab" data-avatar="did">Viktor Express</button>
+                </div>
 
-                            <h2 class="preview-title">Meet Viktor</h2>
-                            <p class="preview-subtitle">
-                                Your AI-powered Digital Growth Advisor<br>
-                                Ready to assess your business transformation journey
-                            </p>
-
-                            <div class="preview-status">
-                                <span class="status-dot"></span>
-                                <span>AI Assistant Online</span>
-                            </div>
-
-                            <button class="start-conversation-btn" onclick="startConversation()">
-                                Start Conversation
-                            </button>
-
-                            <p class="preview-hint">Click to begin your personalized assessment</p>
-                        </div>
-                    </div>
-
-                    <!-- LiveAvatar Iframe (Embedded Option) -->
+                <!-- Viktor Interactive (Premium Experience) -->
+                <div id="heygen-container" class="avatar-container active">
+                    <div class="avatar-label">Premium Interactive Experience</div>
                     <iframe 
-                        id="liveAvatar"
-                        src="https://embed.liveavatar.com/v1/0f81f399-8365-4a38-aae7-ea00a6f5ec80" 
+                        src="https://embed.liveavatar.com/v1/23b84715-937f-4682-9455-f3991631f318" 
                         allow="microphone" 
                         title="LiveAvatar Embed"
-                        style="aspect-ratio: 16/9;">
+                        loading="eager">
                     </iframe>
+                </div>
+
+                <!-- Viktor Express (Fast & Efficient) -->
+                <div id="did-container" class="avatar-container">
+                    <div class="avatar-label">Express Advisory Experience</div>
+                    <div id="did-agent-container"></div>
                 </div>
             </div>
         </div>
@@ -894,7 +704,7 @@
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
+                    <div class="feature-icon">🌐</div>
                     <h3>Pan-India Coverage</h3>
                     <p>Extensive network coverage across urban and rural India with local presence for faster deployment.</p>
                 </div>
@@ -989,7 +799,7 @@
         <h2>Ready to Transform Your Business?</h2>
         <p>Take the Ready For Next assessment and discover your digital readiness score</p>
         <div class="cta-buttons" style="justify-content: center;">
-            <a href="#" class="cta-primary" onclick="startConversation(); return false;">Get Started Now</a>
+            <a href="#" class="cta-primary">Get Started Now</a>
             <a href="#" class="cta-secondary">Schedule Consultation</a>
         </div>
     </section>
@@ -1047,21 +857,64 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Preview Overlay -->
-    <script>
-        function startConversation() {
-            const preview = document.getElementById('avatarPreview');
-            preview.classList.add('hidden');
-            
-            // Scroll to avatar if needed
-            const avatarWrapper = document.querySelector('.avatar-wrapper');
-            if (avatarWrapper) {
-                avatarWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
+    <!-- D-ID Agent Script (Loaded conditionally) -->
+    <script type="module"
+        src="https://agent.d-id.com/v2/index.js"
+        data-mode="full"
+        data-client-key="YXV0aDB8NjhiOTQ5MWFjMjNiOWI5YmZmNTk4OWE1OjVjT2VCcFppOGdfYll3QzlSeHNPVA=="
+        data-agent-id="v2_agt_aqKX1u9o"
+        data-name="did-agent"
+        data-monitor="true"
+        data-target-id="did-agent-container">
     </script>
 
-    <!-- VIBot Floating Widget -->
-    <script src="https://vibot.thynkwise.co.in/embed.js" data-bot-id="778340c8-d4c8-40ba-93c4-d3381dedfc31"></script>
+    <!-- Avatar Switching JavaScript -->
+    <script>
+        // Avatar tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.avatar-tab');
+            const containers = document.querySelectorAll('.avatar-container');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const avatarType = this.getAttribute('data-avatar');
+                    
+                    // Remove active class from all tabs and containers
+                    tabs.forEach(t => t.classList.remove('active'));
+                    containers.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding container
+                    const targetContainer = document.getElementById(avatarType + '-container');
+                    if (targetContainer) {
+                        targetContainer.classList.add('active');
+                    }
+                    
+                    // Analytics tracking (optional)
+                    console.log('Switched to avatar:', avatarType);
+                });
+            });
+
+            // Optional: Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    const activTab = document.querySelector('.avatar-tab.active');
+                    const allTabs = Array.from(tabs);
+                    const currentIndex = allTabs.indexOf(activTab);
+                    
+                    let newIndex;
+                    if (e.key === 'ArrowLeft') {
+                        newIndex = currentIndex > 0 ? currentIndex - 1 : allTabs.length - 1;
+                    } else {
+                        newIndex = currentIndex < allTabs.length - 1 ? currentIndex + 1 : 0;
+                    }
+                    
+                    allTabs[newIndex].click();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
