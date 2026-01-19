@@ -126,15 +126,13 @@
         }
 
         .hero-container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 80vh;
             position: relative;
             z-index: 1;
         }
@@ -159,17 +157,13 @@
             font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 500px;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
         }
 
         .cta-primary, .cta-secondary {
@@ -203,6 +197,247 @@
 
         .cta-secondary:hover {
             background: rgba(233, 39, 55, 0.1);
+        }
+
+        /* Avatar Container with Iframe */
+        .avatar-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(233, 39, 55, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .avatar-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(233, 39, 55, 0.1) 90deg,
+                transparent 180deg,
+                rgba(255, 51, 51, 0.1) 270deg,
+                transparent 360deg
+            );
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .avatar-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 1;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        /* AI Preview Overlay */
+        .avatar-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            cursor: pointer;
+        }
+
+        .avatar-preview.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .avatar-preview-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .vi-logo-large {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 20px rgba(233, 39, 55, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .ai-avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .ai-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .ai-circle-1 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(233, 39, 55, 0.2) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .ai-circle-2 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(233, 39, 55, 0.3) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite 0.3s;
+        }
+
+        .ai-circle-3 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(233, 39, 55, 0.5) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite 0.6s;
+        }
+
+        .ai-core {
+            width: 60px;
+            height: 60px;
+            background: var(--vi-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(233, 39, 55, 0.6);
+        }
+
+        .ai-core::before {
+            content: '👤';
+            font-size: 2rem;
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .preview-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--vi-white);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .preview-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .preview-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--vi-yellow);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--vi-yellow);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .start-conversation-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--vi-gradient);
+            color: var(--vi-white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(233, 39, 55, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0 auto;
+        }
+
+        .start-conversation-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(233, 39, 55, 0.5);
+        }
+
+        .start-conversation-btn::after {
+            content: '→';
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .start-conversation-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        .preview-hint {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
         }
 
         /* HeyGen Floating Widget Styles */
@@ -444,8 +679,17 @@
 
         /* Responsive */
         @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
             .hero-content h1 {
                 font-size: 3rem;
+            }
+
+            .avatar-wrapper {
+                height: 500px;
             }
 
             .nav-links {
@@ -454,6 +698,30 @@
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            .preview-title {
+                font-size: 1.5rem;
+            }
+
+            .ai-avatar-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+
+            .ai-circle-1 {
+                width: 150px;
+                height: 150px;
+            }
+
+            .ai-circle-2 {
+                width: 110px;
+                height: 110px;
+            }
+
+            .ai-circle-3 {
+                width: 70px;
+                height: 70px;
             }
         }
 
@@ -464,6 +732,10 @@
 
             .cta-buttons {
                 flex-direction: column;
+            }
+
+            .avatar-wrapper {
+                height: 400px;
             }
         }
 
@@ -495,6 +767,10 @@
 
         .cta-buttons {
             animation-delay: 0.6s;
+        }
+
+        .avatar-wrapper {
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
         }
     </style>
 </head>
@@ -532,8 +808,55 @@
                     Enterprise-grade connectivity, cloud solutions, and communications platforms designed to accelerate your business growth.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#" class="cta-primary">Start Assessment</a>
+                    <a href="#" class="cta-primary" onclick="startConversation(); return false;">Start Assessment</a>
                     <a href="#solutions" class="cta-secondary">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="avatar-wrapper">
+                <div class="avatar-container">
+                    <!-- AI Preview Overlay -->
+                    <div class="avatar-preview" id="avatarPreview">
+                        <div class="avatar-preview-content">
+                            <svg class="vi-logo-large" width="120" height="89" viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M43.797 26.602h-9.478V0h9.478v26.602zM21.747 0l-6.135 24.789L9.478 0H0l6.584 26.602H24.64L31.224 0h-9.477z" fill="#E92737"/>
+                                <path d="M39.057 40a5.155 5.155 0 0 0 5.159-5.152 5.156 5.156 0 0 0-5.159-5.153 5.156 5.156 0 0 0-5.159 5.153A5.155 5.155 0 0 0 39.057 40z" fill="#FFC300"/>
+                                <path d="M48.952.931h-.37V0h4.85v.931h-1.825c.248.188.41.515.41.94 0 .983-.69 1.58-1.744 1.58s-1.744-.597-1.744-1.594c0-.388.161-.736.423-.924V.931zm1.32 1.602c.571 0 .947-.335.947-.824 0-.488-.376-.83-.946-.83s-.938.327-.938.83c0 .504.375.824.938.824zM48.582 7.275v-.937h.47c-.322-.188-.523-.563-.523-1.024 0-.758.557-1.253 1.329-1.253h2.105v.93h-1.899c-.409 0-.703.27-.703.65 0 .409.322.697.75.697h1.852v.937h-3.38zM49.723 7.863v.805c-.301.034-.489.268-.489.615 0 .288.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.359-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.255-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002zM52.983 11.13c.3 0 .53.236.53.55a.53.53 0 1 1-1.061 0c0-.309.222-.55.53-.55zm-1.02.082v.937h-3.381v-.937h3.381zM51.963 12.924v.937h-.47c.328.187.523.562.523 1.024 0 .763-.55 1.259-1.328 1.259h-2.106v-.937h1.897c.41 0 .705-.262.705-.65 0-.409-.314-.696-.75-.696h-1.852v-.937h3.381zM49.729 20.09c-.732-.134-1.2-.775-1.2-1.606 0-1.146.899-1.736 1.751-1.736.853 0 1.738.522 1.738 1.668 0 1.145-.88 1.667-1.65 1.667a3.71 3.71 0 0 1-.302-.013v-2.425c-.475.066-.771.37-.771.837 0 .375.148.623.436.696v.91l-.002.003zm.925-2.432v1.494c.375-.027.676-.288.676-.736 0-.423-.208-.676-.676-.758zM49.723 20.506v.804c-.301.034-.489.27-.489.615 0 .288.14.489.328.489.69 0 .014-1.816 1.435-1.816.597 0 1.02.515 1.02 1.206 0 .81-.437 1.36-1.1 1.394v-.81c.288-.04.444-.302.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314 0-.792.463-1.386 1.194-1.42l-.002.002zM49.723 23.666v.804c-.301.035-.489.27-.489.616 0 .287.14.488.328.488.69 0 .014-1.815 1.435-1.815.597 0 1.02.515 1.02 1.206 0 .81-.437 1.358-1.1 1.393v-.81c.288-.04.444-.301.444-.557 0-.256-.114-.443-.328-.443-.692 0 .093 1.85-1.435 1.85-.644 0-1.067-.523-1.067-1.314s.463-1.386 1.194-1.42l-.002.002z" fill="#E92737"/>
+                            </svg>
+                            
+                            <div class="ai-avatar-placeholder">
+                                <div class="ai-circle ai-circle-1"></div>
+                                <div class="ai-circle ai-circle-2"></div>
+                                <div class="ai-circle ai-circle-3"></div>
+                                <div class="ai-circle ai-core"></div>
+                            </div>
+
+                            <h2 class="preview-title">Meet Viktor</h2>
+                            <p class="preview-subtitle">
+                                Your AI-powered Digital Growth Advisor<br>
+                                Ready to assess your business transformation journey
+                            </p>
+
+                            <div class="preview-status">
+                                <span class="status-dot"></span>
+                                <span>AI Assistant Online</span>
+                            </div>
+
+                            <button class="start-conversation-btn" onclick="startConversation()">
+                                Start Conversation
+                            </button>
+
+                            <p class="preview-hint">Click to begin your personalized assessment</p>
+                        </div>
+                    </div>
+
+                    <!-- LiveAvatar Iframe (Embedded Option) -->
+                    <iframe 
+                        id="liveAvatar"
+                        src="https://embed.liveavatar.com/v1/0f81f399-8365-4a38-aae7-ea00a6f5ec80" 
+                        allow="microphone" 
+                        title="LiveAvatar Embed"
+                        style="aspect-ratio: 16/9;">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -724,7 +1047,21 @@
         </div>
     </footer>
 
-    <!-- HeyGen Streaming Embed Widget -->
-    <script>!function(window){const host="https://labs.heygen.com",url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI0MDVlZGYyMDFkOGM0MTFkOTcwNWI5Y2U5%0D%0ANTBmMWVhNiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzQwNWVkZjIwMWQ4YzQxMWQ5NzA1YjljZTk1MGYxZWE2L2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjBm%0D%0AZGQwMWYyOGJmNTQyY2ZiNjJkNTY5Nzg2ZmI5ODYxIiwidXNlcm5hbWUiOiI5M2QwNWI3NzU4YjA0%0D%0ANDViOWIzOWEzNmUwNzAzY2M4ZCJ9&inIFrame=1",clientWidth=document.body.clientWidth,wrapDiv=document.createElement("div");wrapDiv.id="heygen-streaming-embed";const container=document.createElement("div");container.id="heygen-streaming-container";const stylesheet=document.createElement("style");stylesheet.innerHTML=`\n  #heygen-streaming-embed {\n    z-index: 9999;\n    position: fixed;\n    left: 40px;\n    bottom: 40px;\n    width: 200px;\n    height: 200px;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);\n    transition: all linear 0.1s;\n    overflow: hidden;\n\n    opacity: 0;\n    visibility: hidden;\n  }\n  #heygen-streaming-embed.show {\n    opacity: 1;\n    visibility: visible;\n  }\n  #heygen-streaming-embed.expand {\n    ${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}\n    border: 0;\n    border-radius: 8px;\n  }\n  #heygen-streaming-container {\n    width: 100%;\n    height: 100%;\n  }\n  #heygen-streaming-container iframe {\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  `;const iframe=document.createElement("iframe");iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;let visible=!1,initial=!1;window.addEventListener("message",(e=>{e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial)):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible)):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible)))})),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.body.appendChild(wrapDiv)}(globalThis);</script>
+    <!-- JavaScript for Preview Overlay -->
+    <script>
+        function startConversation() {
+            const preview = document.getElementById('avatarPreview');
+            preview.classList.add('hidden');
+            
+            // Scroll to avatar if needed
+            const avatarWrapper = document.querySelector('.avatar-wrapper');
+            if (avatarWrapper) {
+                avatarWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+
+    <!-- VIBot Floating Widget -->
+    <script src="https://vibot.thynkwise.co.in/embed.js" data-bot-id="778340c8-d4c8-40ba-93c4-d3381dedfc31"></script>
 </body>
 </html>
