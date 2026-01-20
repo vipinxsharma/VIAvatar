@@ -190,46 +190,7 @@
             background: rgba(230, 0, 0, 0.1);
         }
 
-        /* Avatar Container with Tabs */
-        .avatar-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        .avatar-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem;
-            border-radius: 12px;
-        }
-
-        .avatar-tab {
-            flex: 1;
-            padding: 0.75rem 1.5rem;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.6);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .avatar-tab:hover {
-            background: rgba(230, 0, 0, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .avatar-tab.active {
-            background: var(--vi-gradient);
-            color: var(--vi-white);
-            box-shadow: 0 4px 12px rgba(230, 0, 0, 0.3);
-        }
-
+        /* Avatar Container - Supports both interaction modes */
         .avatar-container {
             position: relative;
             width: 100%;
@@ -239,11 +200,6 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(230, 0, 0, 0.2);
             background: rgba(255, 255, 255, 0.05);
-            display: none;
-        }
-
-        .avatar-container.active {
-            display: block;
         }
 
         .avatar-container::before {
@@ -271,34 +227,84 @@
             }
         }
 
-        .avatar-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            position: relative;
-            z-index: 1;
+        /* Avatar Toggle Buttons */
+        .avatar-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 0.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
         }
 
-        /* D-ID Agent Container */
+        .avatar-toggle button {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: var(--vi-white);
+            border: 1px solid rgba(230, 0, 0, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .avatar-toggle button.active {
+            background: var(--vi-gradient);
+            border-color: var(--vi-red);
+        }
+
+        .avatar-toggle button:hover:not(.active) {
+            background: rgba(230, 0, 0, 0.1);
+        }
+
+        /* Embedded Advisor Container */
         #did-agent-container {
             width: 100%;
             height: 100%;
             position: relative;
             z-index: 1;
+            display: none;
         }
 
-        .avatar-label {
+        #did-agent-container.active {
+            display: block;
+        }
+
+        /* Floating Assistant Info */
+        .heygen-info {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(0, 0, 0, 0.7);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             color: var(--vi-white);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            z-index: 10;
-            backdrop-filter: blur(10px);
+            z-index: 1;
+            display: none;
+        }
+
+        .heygen-info.active {
+            display: block;
+        }
+
+        .heygen-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .heygen-info p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         /* Features Section */
@@ -557,10 +563,6 @@
             .section-title {
                 font-size: 2rem;
             }
-
-            .avatar-tabs {
-                flex-direction: column;
-            }
         }
 
         @media (max-width: 640px) {
@@ -574,6 +576,16 @@
 
             .avatar-container {
                 height: 400px;
+            }
+
+            .avatar-toggle {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .avatar-toggle button {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
             }
         }
 
@@ -607,7 +619,7 @@
             animation-delay: 0.6s;
         }
 
-        .avatar-wrapper {
+        .avatar-container {
             animation: fadeInUp 0.8s ease-out 0.8s backwards;
         }
     </style>
@@ -627,7 +639,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Multiple Avatar Options -->
+    <!-- Hero Section with Avatar -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
@@ -643,31 +655,21 @@
                     <a href="#solutions" class="cta-secondary">Explore Solutions</a>
                 </div>
             </div>
-            
-            <!-- Avatar Wrapper with Tabs -->
-            <div class="avatar-wrapper">
-                <!-- Avatar Selection Tabs -->
-                <div class="avatar-tabs">
-                    <button class="avatar-tab active" data-avatar="heygen">Viktor Interactive</button>
-                    <button class="avatar-tab" data-avatar="did">Viktor Express</button>
+            <div class="avatar-container">
+                <!-- Avatar Toggle Buttons -->
+                <div class="avatar-toggle">
+                    <button id="toggle-heygen" class="active">Floating Assistant</button>
+                    <button id="toggle-did">Embedded Advisor</button>
                 </div>
 
-                <!-- Viktor Interactive (Premium Experience) -->
-                <div id="heygen-container" class="avatar-container active">
-                    <div class="avatar-label">Premium Interactive Experience</div>
-                    <iframe 
-                        src="https://embed.liveavatar.com/v1/23b84715-937f-4682-9455-f3991631f318" 
-                        allow="microphone" 
-                        title="LiveAvatar Embed"
-                        loading="eager">
-                    </iframe>
+                <!-- Info Display (shown when Floating Assistant is active) -->
+                <div class="heygen-info active" id="heygen-info">
+                    <h3>Viktor - Your Digital Growth Advisor</h3>
+                    <p>Click the floating assistant (bottom-left corner) to start your personalized Ready For Next assessment with Viktor.</p>
                 </div>
 
-                <!-- Viktor Express (Fast & Efficient) -->
-                <div id="did-container" class="avatar-container">
-                    <div class="avatar-label">Express Advisory Experience</div>
-                    <div id="did-agent-container"></div>
-                </div>
+                <!-- Embedded Advisor Container -->
+                <div id="did-agent-container"></div>
             </div>
         </div>
     </section>
@@ -704,7 +706,7 @@
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
+                    <div class="feature-icon">🌍</div>
                     <h3>Pan-India Coverage</h3>
                     <p>Extensive network coverage across urban and rural India with local presence for faster deployment.</p>
                 </div>
@@ -857,7 +859,89 @@
         </div>
     </footer>
 
-    <!-- D-ID Agent Script (Loaded conditionally) -->
+    <!-- Floating Assistant Streaming Embed Script -->
+    <script>
+        !function(window) {
+            const host = "https://labs.heygen.com",
+                url = host + "/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI0MDVlZGYyMDFkOGM0MTFkOTcwNWI5Y2U5%0D%0ANTBmMWVhNiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzQwNWVkZjIwMWQ4YzQxMWQ5NzA1YjljZTk1MGYxZWE2L2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjBm%0D%0AZGQwMWYyOGJmNTQyY2ZiNjJkNTY5Nzg2ZmI5ODYxIiwidXNlcm5hbWUiOiI5M2QwNWI3NzU4YjA0%0D%0ANDViOWIzOWEzNmUwNzAzY2M4ZCJ9&inIFrame=1",
+                clientWidth = document.body.clientWidth,
+                wrapDiv = document.createElement("div");
+            
+            wrapDiv.id = "heygen-streaming-embed";
+            
+            const container = document.createElement("div");
+            container.id = "heygen-streaming-container";
+            
+            const stylesheet = document.createElement("style");
+            stylesheet.innerHTML = `
+                #heygen-streaming-embed {
+                    z-index: 9999;
+                    position: fixed;
+                    left: 40px;
+                    bottom: 40px;
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    border: 2px solid #fff;
+                    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
+                    transition: all linear 0.1s;
+                    overflow: hidden;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                #heygen-streaming-embed.show {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                #heygen-streaming-embed.expand {
+                    ${clientWidth < 540 ? "height: 266px; width: 96%; left: 50%; transform: translateX(-50%);" : "height: 366px; width: calc(366px * 16 / 9);"}
+                    border: 0;
+                    border-radius: 8px;
+                }
+                #heygen-streaming-container {
+                    width: 100%;
+                    height: 100%;
+                }
+                #heygen-streaming-container iframe {
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                }
+            `;
+            
+            const iframe = document.createElement("iframe");
+            iframe.allowFullscreen = false;
+            iframe.title = "Streaming Embed";
+            iframe.role = "dialog";
+            iframe.allow = "microphone";
+            iframe.src = url;
+            
+            let visible = false,
+                initial = false;
+            
+            window.addEventListener("message", (e => {
+                if (e.origin === host && e.data && e.data.type && "streaming-embed" === e.data.type) {
+                    if ("init" === e.data.action) {
+                        initial = true;
+                        wrapDiv.classList.toggle("show", initial);
+                    } else if ("show" === e.data.action) {
+                        visible = true;
+                        wrapDiv.classList.toggle("expand", visible);
+                    } else if ("hide" === e.data.action) {
+                        visible = false;
+                        wrapDiv.classList.toggle("expand", visible);
+                    }
+                }
+            }));
+            
+            container.appendChild(iframe);
+            wrapDiv.appendChild(stylesheet);
+            wrapDiv.appendChild(container);
+            document.body.appendChild(wrapDiv);
+        }(globalThis);
+    </script>
+
+    <!-- Embedded Advisor Script -->
     <script type="module"
         src="https://agent.d-id.com/v2/index.js"
         data-mode="full"
@@ -868,52 +952,43 @@
         data-target-id="did-agent-container">
     </script>
 
-    <!-- Avatar Switching JavaScript -->
+    <!-- Toggle Functionality Script -->
     <script>
-        // Avatar tab switching functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.avatar-tab');
-            const containers = document.querySelectorAll('.avatar-container');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const avatarType = this.getAttribute('data-avatar');
-                    
-                    // Remove active class from all tabs and containers
-                    tabs.forEach(t => t.classList.remove('active'));
-                    containers.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding container
-                    const targetContainer = document.getElementById(avatarType + '-container');
-                    if (targetContainer) {
-                        targetContainer.classList.add('active');
-                    }
-                    
-                    // Analytics tracking (optional)
-                    console.log('Switched to avatar:', avatarType);
-                });
-            });
+            const toggleHeyGen = document.getElementById('toggle-heygen');
+            const toggleDID = document.getElementById('toggle-did');
+            const didContainer = document.getElementById('did-agent-container');
+            const heygenInfo = document.getElementById('heygen-info');
+            const heygenWidget = document.getElementById('heygen-streaming-embed');
 
-            // Optional: Add keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                    const activTab = document.querySelector('.avatar-tab.active');
-                    const allTabs = Array.from(tabs);
-                    const currentIndex = allTabs.indexOf(activTab);
-                    
-                    let newIndex;
-                    if (e.key === 'ArrowLeft') {
-                        newIndex = currentIndex > 0 ? currentIndex - 1 : allTabs.length - 1;
-                    } else {
-                        newIndex = currentIndex < allTabs.length - 1 ? currentIndex + 1 : 0;
-                    }
-                    
-                    allTabs[newIndex].click();
+            // Function to show Floating Assistant
+            function showHeyGen() {
+                toggleHeyGen.classList.add('active');
+                toggleDID.classList.remove('active');
+                didContainer.classList.remove('active');
+                heygenInfo.classList.add('active');
+                if (heygenWidget) {
+                    heygenWidget.style.display = 'block';
                 }
-            });
+            }
+
+            // Function to show Embedded Advisor
+            function showDID() {
+                toggleDID.classList.add('active');
+                toggleHeyGen.classList.remove('active');
+                didContainer.classList.add('active');
+                heygenInfo.classList.remove('active');
+                if (heygenWidget) {
+                    heygenWidget.style.display = 'none';
+                }
+            }
+
+            // Event listeners
+            toggleHeyGen.addEventListener('click', showHeyGen);
+            toggleDID.addEventListener('click', showDID);
+
+            // Default: Show Floating Assistant
+            showHeyGen();
         });
     </script>
 </body>
