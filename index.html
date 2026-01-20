@@ -190,7 +190,7 @@
             background: rgba(230, 0, 0, 0.1);
         }
 
-        /* Avatar Container - Supports both interaction modes */
+        /* Avatar Container - Floating Assistant Only */
         .avatar-container {
             position: relative;
             width: 100%;
@@ -227,56 +227,8 @@
             }
         }
 
-        /* Avatar Toggle Buttons */
-        .avatar-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            display: flex;
-            gap: 0.5rem;
-            background: rgba(26, 26, 26, 0.8);
-            padding: 0.5rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .avatar-toggle button {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            color: var(--vi-white);
-            border: 1px solid rgba(230, 0, 0, 0.3);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .avatar-toggle button.active {
-            background: var(--vi-gradient);
-            border-color: var(--vi-red);
-        }
-
-        .avatar-toggle button:hover:not(.active) {
-            background: rgba(230, 0, 0, 0.1);
-        }
-
-        /* Embedded Advisor Container */
-        #did-agent-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-            display: none;
-        }
-
-        #did-agent-container.active {
-            display: block;
-        }
-
-        /* Floating Assistant Info */
-        .heygen-info {
+        /* Avatar Info - Floating Assistant */
+        .avatar-info {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -284,14 +236,9 @@
             text-align: center;
             color: var(--vi-white);
             z-index: 1;
-            display: none;
         }
 
-        .heygen-info.active {
-            display: block;
-        }
-
-        .heygen-info h3 {
+        .avatar-info h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             background: var(--vi-gradient);
@@ -300,11 +247,21 @@
             background-clip: text;
         }
 
-        .heygen-info p {
+        .avatar-info p {
             font-size: 1rem;
             color: rgba(255, 255, 255, 0.7);
             max-width: 400px;
             margin: 0 auto;
+        }
+
+        /* Embedded Agent Interface */
+        #embedded-agent-interface {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
         }
 
         /* Features Section */
@@ -577,16 +534,6 @@
             .avatar-container {
                 height: 400px;
             }
-
-            .avatar-toggle {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
-            .avatar-toggle button {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.8rem;
-            }
         }
 
         /* Animations */
@@ -656,20 +603,14 @@
                 </div>
             </div>
             <div class="avatar-container">
-                <!-- Avatar Toggle Buttons -->
-                <div class="avatar-toggle">
-                    <button id="toggle-heygen" class="active">Floating Assistant</button>
-                    <button id="toggle-did">Embedded Advisor</button>
-                </div>
-
-                <!-- Info Display (shown when Floating Assistant is active) -->
-                <div class="heygen-info active" id="heygen-info">
+                <!-- Floating Assistant Info -->
+                <div class="avatar-info">
                     <h3>Viktor - Your Digital Growth Advisor</h3>
                     <p>Click the floating assistant (bottom-left corner) to start your personalized Ready For Next assessment with Viktor.</p>
                 </div>
 
-                <!-- Embedded Advisor Container -->
-                <div id="did-agent-container"></div>
+                <!-- Embedded Agent Interface -->
+                <div id="embedded-agent-interface"></div>
             </div>
         </div>
     </section>
@@ -941,7 +882,7 @@
         }(globalThis);
     </script>
 
-    <!-- Embedded Advisor Script -->
+    <!-- Embedded Agent Script -->
     <script type="module"
         src="https://agent.d-id.com/v2/index.js"
         data-mode="full"
@@ -949,47 +890,14 @@
         data-agent-id="v2_agt_aqKX1u9o"
         data-name="did-agent"
         data-monitor="true"
-        data-target-id="did-agent-container">
+        data-target-id="embedded-agent-interface">
     </script>
 
-    <!-- Toggle Functionality Script -->
+    <!-- Initialization Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleHeyGen = document.getElementById('toggle-heygen');
-            const toggleDID = document.getElementById('toggle-did');
-            const didContainer = document.getElementById('did-agent-container');
-            const heygenInfo = document.getElementById('heygen-info');
-            const heygenWidget = document.getElementById('heygen-streaming-embed');
-
-            // Function to show Floating Assistant
-            function showHeyGen() {
-                toggleHeyGen.classList.add('active');
-                toggleDID.classList.remove('active');
-                didContainer.classList.remove('active');
-                heygenInfo.classList.add('active');
-                if (heygenWidget) {
-                    heygenWidget.style.display = 'block';
-                }
-            }
-
-            // Function to show Embedded Advisor
-            function showDID() {
-                toggleDID.classList.add('active');
-                toggleHeyGen.classList.remove('active');
-                didContainer.classList.add('active');
-                heygenInfo.classList.remove('active');
-                if (heygenWidget) {
-                    heygenWidget.style.display = 'none';
-                }
-            }
-
-            // Event listeners
-            toggleHeyGen.addEventListener('click', showHeyGen);
-            toggleDID.addEventListener('click', showDID);
-
-            // Default: Show Floating Assistant
-            showHeyGen();
-        });
+        // Dual-avatar setup:
+        // 1. Floating assistant (bottom-left) - auto-initializes via streaming embed script
+        // 2. Embedded agent (hero section) - initializes via D-ID module script above
     </script>
 </body>
 </html>
