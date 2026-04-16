@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VI Business - Enterprise Solutions (VIBot Assistant)</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Vi Business - AI-Powered Enterprise Support | Mobility, Connectivity, Security & IoT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,439 +13,540 @@
         }
 
         :root {
-            --vi-red: #E60000;
-            --vi-dark: #1A1A1A;
-            --vi-gray: #4A4A4A;
-            --vi-light-gray: #F5F5F5;
-            --vi-white: #FFFFFF;
-            --vi-accent: #FF3333;
-            --vi-gradient: linear-gradient(135deg, #E60000 0%, #FF3333 100%);
+            /* Vi Official Brand Colors - Exact Specifications */
+            --vi-magenta: #ED2736;
+            --vi-red-alt: #E60000;
+            --vi-charcoal: #2F3044;
+            --vi-gradient: linear-gradient(135deg, #ED2736 0%, #2F3044 100%);
+            --dark-bg: #2F3044;
+            --darker-bg: #1A1A2E;
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+            --text-dark: #2D3436;
+            --text-gray: #636E72;
+            --border-gray: #DFE6E9;
         }
 
         body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--vi-white);
-            color: var(--vi-dark);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            color: var(--text-dark);
+            background: var(--white);
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
             top: 0;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
             z-index: 1000;
-            border-bottom: 1px solid rgba(230, 0, 0, 0.1);
+            border-bottom: 3px solid var(--vi-magenta);
         }
 
-        .nav-container {
+        .header-content {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
             font-size: 2rem;
             font-weight: 800;
             background: var(--vi-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -1px;
         }
 
-        .nav-links {
+        .logo-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .header-actions {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .nav-links a {
-            color: var(--vi-white);
+        .btn-primary {
+            background: var(--vi-gradient);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            position: relative;
+            box-shadow: 0 4px 15px rgba(95, 37, 159, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--vi-gradient);
-            transition: width 0.3s ease;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(95, 37, 159, 0.4);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .btn-secondary {
+            color: var(--vi-magenta);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--vi-magenta);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
-        /* Hero Section */
+        .btn-secondary:hover {
+            background: var(--vi-magenta);
+            color: var(--white);
+        }
+
+        /* Hero */
         .hero {
-            margin-top: 80px;
-            min-height: 100vh;
-            background: var(--vi-dark);
+            background: var(--vi-gradient);
+            padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(230, 0, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(255, 51, 51, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--vi-white);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-
-        .hero-content h1 .gradient-text {
-            background: var(--vi-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .cta-primary, .cta-secondary {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 8px;
-        }
-
-        .cta-primary {
-            background: var(--vi-gradient);
-            color: var(--vi-white);
-            box-shadow: 0 4px 20px rgba(230, 0, 0, 0.3);
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.4);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--vi-white);
-            border: 2px solid var(--vi-red);
-        }
-
-        .cta-secondary:hover {
-            background: rgba(230, 0, 0, 0.1);
-        }
-
-        /* Avatar Container - VIBot Assistant */
-        .avatar-container {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(230, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .avatar-container::before {
-            content: '';
-            position: absolute;
             top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                from 0deg,
-                transparent 0deg,
-                rgba(230, 0, 0, 0.1) 90deg,
-                transparent 180deg,
-                rgba(255, 51, 51, 0.1) 270deg,
-                transparent 360deg
-            );
-            animation: rotate 20s linear infinite;
-            pointer-events: none;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
-        @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Avatar Info - VIBot Assistant */
-        .avatar-info {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--vi-white);
-            z-index: 1;
-        }
-
-        .avatar-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            background: var(--vi-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .avatar-info p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: var(--vi-light-gray);
-        }
-
-        .features-container {
+        .hero-content {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .section-title {
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--dark-bg);
+            padding: 3rem 2rem;
+        }
+
+        .stats-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
             font-size: 3rem;
             font-weight: 800;
-            text-align: center;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
-        .section-subtitle {
-            font-size: 1.25rem;
+        .stat-item p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .section-header {
             text-align: center;
-            color: var(--vi-gray);
             margin-bottom: 4rem;
         }
 
-        .features-grid {
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 span {
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--vi-magenta);
+            box-shadow: 0 15px 40px rgba(95, 37, 159, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--vi-magenta);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* AI Assistant Section */
+        .ai-assistant {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .ai-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .ai-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-text h2 span {
+            background: var(--vi-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-text p {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .ai-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ai-features li:last-child {
+            border-bottom: none;
+        }
+
+        .ai-features li::before {
+            content: '✓';
+            background: var(--vi-gradient);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ai-demo {
+            background: var(--light-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-gray);
+        }
+
+        .ai-demo h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .chat-bubble {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .chat-bubble strong {
+            color: var(--vi-magenta);
+        }
+
+        .chat-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-gray);
+        }
+
+        .chat-cta p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .chat-arrow {
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Why Vi Section */
+        .why-vi {
+            padding: 5rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .why-vi .section-header h2,
+        .why-vi .section-header p {
+            color: var(--white);
+        }
+
+        .why-grid {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .feature-card {
-            background: var(--vi-white);
+        .why-card {
+            background: rgba(255,255,255,0.05);
             padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(230, 0, 0, 0.1);
-            border-color: var(--vi-red);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--vi-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
+        .why-card h3 {
+            font-size: 1.4rem;
             font-weight: 700;
+            color: var(--white);
             margin-bottom: 1rem;
-            color: var(--vi-dark);
         }
 
-        .feature-card p {
-            color: var(--vi-gray);
-            line-height: 1.7;
+        .why-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
         }
 
-        /* Solutions Section */
-        .solutions {
-            padding: 6rem 2rem;
-            background: var(--vi-white);
+        /* Awards Section */
+        .awards {
+            padding: 5rem 2rem;
+            background: var(--white);
         }
 
-        .solutions-container {
+        .awards-grid {
             max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .solutions-grid {
+            margin: 3rem auto 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .solution-card {
-            background: linear-gradient(135deg, var(--vi-dark) 0%, #2A2A2A 100%);
+        .award-item {
+            text-align: center;
             padding: 2rem;
-            border-radius: 16px;
-            color: var(--vi-white);
+            background: var(--light-bg);
+            border-radius: 15px;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--vi-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .solution-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .solution-card:hover {
+        .award-item:hover {
+            border-color: var(--vi-magenta);
             transform: translateY(-5px);
         }
 
-        .solution-card h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
+        .award-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            font-family: 'Space Mono', monospace;
         }
 
-        .solution-card ul {
-            list-style: none;
-            padding-left: 0;
+        .award-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
         }
 
-        .solution-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .solution-card li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--vi-red);
-            font-weight: bold;
+        .award-item p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 6rem 2rem;
-            background: var(--vi-dark);
+            padding: 5rem 2rem;
+            background: var(--vi-gradient);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 50%, rgba(230, 0, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(255, 51, 51, 0.15) 0%, transparent 50%);
-            pointer-events: none;
         }
 
         .cta-section h2 {
             font-size: 3rem;
             font-weight: 800;
-            color: var(--vi-white);
+            color: var(--white);
             margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
         }
 
         .cta-section p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--vi-magenta);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         /* Footer */
-        footer {
-            background: #0A0A0A;
-            color: rgba(255, 255, 255, 0.7);
+        .footer {
+            background: var(--dark-bg);
+            color: rgba(255,255,255,0.8);
             padding: 3rem 2rem 1.5rem;
         }
 
-        .footer-container {
+        .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
@@ -456,338 +555,319 @@
             margin-bottom: 2rem;
         }
 
-        .footer-column h4 {
-            color: var(--vi-white);
+        .footer-section h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
         }
 
-        .footer-column ul {
+        .footer-section ul {
             list-style: none;
         }
 
-        .footer-column li {
-            margin-bottom: 0.75rem;
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
         }
 
-        .footer-column a {
-            color: rgba(255, 255, 255, 0.7);
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .footer-column a:hover {
-            color: var(--vi-red);
+        .footer-section a:hover {
+            color: var(--white);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1.5rem;
             text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
             font-size: 0.9rem;
+            margin: 0.5rem 0;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-container {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .ai-content {
                 grid-template-columns: 1fr;
-                gap: 3rem;
             }
 
-            .hero-content h1 {
-                font-size: 3rem;
+            .header-actions {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
-            .avatar-container {
-                height: 500px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero-content h1 {
-                font-size: 2rem;
+            .services-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
             }
 
             .cta-buttons {
                 flex-direction: column;
             }
-
-            .avatar-container {
-                height: 400px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content h1,
-        .hero-content p,
-        .cta-buttons {
-            animation: fadeInUp 0.8s ease-out backwards;
-        }
-
-        .hero-content h1 {
-            animation-delay: 0.2s;
-        }
-
-        .hero-content p {
-            animation-delay: 0.4s;
-        }
-
-        .cta-buttons {
-            animation-delay: 0.6s;
-        }
-
-        .avatar-container {
-            animation: fadeInUp 0.8s ease-out 0.8s backwards;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Vi Business</div>
-            <ul class="nav-links">
-                <li><a href="#solutions">Solutions</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#industries">Industries</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="Vodafone_Idea_logo.png" alt="Vi Business" class="logo-img">
+                <div>
+                    <div class="logo-subtitle">Business Solutions</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="#ai-assistant" class="btn-secondary">Try AI Assistant</a>
+                <a href="#contact" class="btn-primary">Request Call Back</a>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section with Avatar -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>
-                    Powering Your<br>
-                    <span class="gradient-text">Digital Transformation</span>
-                </h1>
-                <p>
-                    Enterprise-grade connectivity, cloud solutions, and communications platforms designed to accelerate your business growth.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#" class="cta-primary">Start Assessment</a>
-                    <a href="#solutions" class="cta-secondary">Explore Solutions</a>
-                </div>
+        <div class="hero-content">
+            <div class="hero-badge">🤖 Now with AI-Powered Support</div>
+            <h1>Enterprise Solutions<br>Built for India's Digital Future</h1>
+            <p>Experience seamless enterprise mobility, connectivity, security & IoT solutions - now enhanced with 24/7 AI-powered assistance for instant support and expert guidance.</p>
+            <a href="#ai-assistant" class="btn-white">Experience AI Support →</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-content">
+            <div class="stat-item">
+                <h3>1.05B</h3>
+                <p>Indians Covered</p>
             </div>
-            <div class="avatar-container">
-                <!-- VIBot Assistant Info -->
-                <div class="avatar-info">
-                    <h3>Viktor - Your Digital Growth Advisor</h3>
-                    <p>Click the chat widget (bottom-right corner) to start your personalized Ready For Next assessment with Viktor.</p>
+            <div class="stat-item">
+                <h3>439K+</h3>
+                <p>Broadband Sites</p>
+            </div>
+            <div class="stat-item">
+                <h3>8030MHz</h3>
+                <p>Spectrum Portfolio</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>AI Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="section-header">
+            <h2>Enterprise <span>Solutions</span></h2>
+            <p>Comprehensive digital transformation solutions for modern businesses</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">📱</span>
+                <h3>Enterprise Mobility</h3>
+                <p>Vi Business Plus Postpaid plans with 5G connectivity, international roaming, eSIMs, and managed mobility solutions designed for your workforce.</p>
+                <a href="#" class="service-link">Explore Mobility →</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🌐</span>
+                <h3>Enterprise Connectivity</h3>
+                <p>Hybrid SD-WAN, MPLS, Internet Leased Lines, and managed Wi-Fi solutions delivering secure, high-speed connectivity across locations.</p>
+                <a href="#" class="service-link">Explore Connectivity →</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🔒</span>
+                <h3>Security Solutions</h3>
+                <p>Maximum device security, email protection, web security, cloud firewall, and managed security services to safeguard your business.</p>
+                <a href="#" class="service-link">Explore Security →</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🔌</span>
+                <h3>Internet of Things (IoT)</h3>
+                <p>Integrated IoT solutions, smart infrastructure, mobility, and utility solutions with IoT Smart Central management platform.</p>
+                <a href="#" class="service-link">Explore IoT →</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">💬</span>
+                <h3>Business Communications</h3>
+                <p>SIP trunking, CPaaS, CCaaS, RCS messaging, and toll-free services enabling omni-channel customer engagement.</p>
+                <a href="#" class="service-link">Explore Communications →</a>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">☁️</span>
+                <h3>Colocation & Cloud</h3>
+                <p>Cloud managed services, infrastructure colocation, Google Workspace, and Microsoft 365 for enhanced productivity and scalability.</p>
+                <a href="#" class="service-link">Explore Cloud →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Section -->
+    <section class="ai-assistant" id="ai-assistant">
+        <div class="ai-content">
+            <div class="ai-text">
+                <h2>Meet Your <span>AI Assistant</span></h2>
+                <p>Get instant, expert answers to your enterprise solution queries - 24/7. Our AI assistant is trained on Vi Business's comprehensive portfolio to help you:</p>
+                <ul class="ai-features">
+                    <li>Explore enterprise mobility and connectivity solutions</li>
+                    <li>Get pricing and plan recommendations</li>
+                    <li>Learn about IoT and security offerings</li>
+                    <li>Request technical support and documentation</li>
+                    <li>Schedule consultations with Vi Business experts</li>
+                    <li>Navigate 5G network capabilities and deployment</li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="margin-top: 2rem; display: inline-block;">Request Enterprise Demo</a>
+            </div>
+            <div class="ai-demo">
+                <h3>💬 Try the AI Assistant Now</h3>
+                <div class="chat-bubble">
+                    <p><strong>You:</strong> What enterprise mobility solutions do you offer for a 500+ employee organization?</p>
+                </div>
+                <div class="chat-bubble">
+                    <p><strong>AI Assistant:</strong> For organizations of your size, I recommend Vi Business Plus Postpaid with data pooling, which allows employees to share a centralized data quota. This includes 5G connectivity, international roaming, mobile security, and Google Workspace integration. Would you like me to schedule a consultation to discuss your specific requirements?</p>
+                </div>
+                <div class="chat-cta">
+                    <p><strong>Click the chat widget to start your conversation</strong></p>
+                    <div class="chat-arrow">👇</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <h2 class="section-title">Why Choose Vi Business</h2>
-            <p class="section-subtitle">Trusted by enterprises across industries for mission-critical solutions</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Enterprise-Grade Reliability</h3>
-                    <p>99.9% uptime SLA with redundant infrastructure and 24/7 monitoring to keep your business always connected.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Security & Compliance</h3>
-                    <p>Bank-grade security protocols, ISO certifications, and compliance with regulatory standards to protect your data.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Scalable Solutions</h3>
-                    <p>Flexible infrastructure that grows with your business, from startups to large enterprises with multiple locations.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Expert Support</h3>
-                    <p>Dedicated account managers and technical support team available round-the-clock to ensure smooth operations.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3>Pan-India Coverage</h3>
-                    <p>Extensive network coverage across urban and rural India with local presence for faster deployment.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Real-Time Analytics</h3>
-                    <p>Advanced dashboards and reporting tools to monitor performance, track KPIs, and make data-driven decisions.</p>
-                </div>
+    <!-- Why Vi Business -->
+    <section class="why-vi">
+        <div class="section-header">
+            <h2>Why <span>Vi Business</span></h2>
+            <p>India's trusted enterprise partner for digital transformation</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <h3>🚀 Future-Ready Network</h3>
+                <p>Powered by GIGAnet - our 4G network built on 5G ready infrastructure with extensive spectrum portfolio across all bands.</p>
+            </div>
+            <div class="why-card">
+                <h3>🎯 Comprehensive Solutions</h3>
+                <p>Wide range of technology solutions with expert service management, support, and digital self-service experiences.</p>
+            </div>
+            <div class="why-card">
+                <h3>🌍 Extensive Coverage</h3>
+                <p>184,200+ unique locations, 439,600 broadband sites, and 303,500 km of optical fiber infrastructure.</p>
+            </div>
+            <div class="why-card">
+                <h3>🤝 Partnership Ecosystem</h3>
+                <p>Strategic partnerships with global leaders including Google, Microsoft, IBM, Cisco, and more.</p>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section class="solutions" id="solutions">
-        <div class="solutions-container">
-            <h2 class="section-title">Our Enterprise Solutions</h2>
-            <p class="section-subtitle">Comprehensive digital infrastructure for modern businesses</p>
-            
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <h3>Connectivity</h3>
-                    <ul>
-                        <li>Internet Leased Lines</li>
-                        <li>SD-WAN Solutions</li>
-                        <li>Enterprise Wi-Fi</li>
-                        <li>5G Connectivity</li>
-                        <li>MPLS Networks</li>
-                    </ul>
-                </div>
-                
-                <div class="solution-card">
-                    <h3>Cloud Services</h3>
-                    <ul>
-                        <li>Public & Hybrid Cloud</li>
-                        <li>Cloud Migration</li>
-                        <li>Disaster Recovery</li>
-                        <li>Managed Hosting</li>
-                        <li>Backup Solutions</li>
-                    </ul>
-                </div>
-                
-                <div class="solution-card">
-                    <h3>Communications</h3>
-                    <ul>
-                        <li>CPaaS Platform</li>
-                        <li>CCaaS Solutions</li>
-                        <li>SIP Trunking</li>
-                        <li>Cloud Telephony</li>
-                        <li>WhatsApp Business API</li>
-                    </ul>
-                </div>
-                
-                <div class="solution-card">
-                    <h3>Security</h3>
-                    <ul>
-                        <li>Managed Firewalls</li>
-                        <li>Secure Email Gateway</li>
-                        <li>DDoS Protection</li>
-                        <li>Security Operations Center</li>
-                        <li>Threat Intelligence</li>
-                    </ul>
-                </div>
-                
-                <div class="solution-card">
-                    <h3>IoT Solutions</h3>
-                    <ul>
-                        <li>Fleet Management</li>
-                        <li>Asset Tracking</li>
-                        <li>Smart Metering</li>
-                        <li>Industrial IoT</li>
-                        <li>Connected Devices</li>
-                    </ul>
-                </div>
-                
-                <div class="solution-card">
-                    <h3>Digital Workplace</h3>
-                    <ul>
-                        <li>Unified Communications</li>
-                        <li>Video Conferencing</li>
-                        <li>Collaboration Tools</li>
-                        <li>Mobile Device Management</li>
-                        <li>Employee Productivity Apps</li>
-                    </ul>
-                </div>
+    <!-- Awards -->
+    <section class="awards">
+        <div class="section-header">
+            <h2>Awards & <span>Recognition</span></h2>
+            <p>Consistently recognized by industry leaders and customers</p>
+        </div>
+        <div class="awards-grid">
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>CIO Choice 2025</h4>
+                <p>Digital Transformation Enabler</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>Asian Telecom Awards</h4>
+                <p>Digital Initiative of the Year</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>Frost & Sullivan</h4>
+                <p>IoT Leadership Award</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>CIO Choice</h4>
+                <p>Telecom Carrier - 9th consecutive win</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>Asian Experience Awards</h4>
+                <p>Customer Experience of the Year</p>
+            </div>
+            <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <h4>Voice & Data</h4>
+                <p>Enterprise Business Services</p>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section" id="contact">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Take the Ready For Next assessment and discover your digital readiness score</p>
-        <div class="cta-buttons" style="justify-content: center;">
-            <a href="#" class="cta-primary">Get Started Now</a>
-            <a href="#" class="cta-secondary">Schedule Consultation</a>
+        <h2>Ready to Transform Your Enterprise?</h2>
+        <p>Connect with our experts to discover how Vi Business solutions can accelerate your digital transformation journey.</p>
+        <div class="cta-buttons">
+            <a href="tel:1800123123123" class="btn-white">📞 Call 1800-123-123-123</a>
+            <a href="mailto:corporatecare.india@vodafoneidea.com" class="btn-white">✉️ Email Our Team</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-column">
-                <h4>Solutions</h4>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Vi Business</h3>
+                <p>Vodafone Idea Limited is an Aditya Birla Group and Vodafone Group partnership, providing pan-India enterprise solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Solutions</h3>
                 <ul>
+                    <li><a href="#">Enterprise Mobility</a></li>
                     <li><a href="#">Connectivity</a></li>
-                    <li><a href="#">Cloud Services</a></li>
-                    <li><a href="#">Communications</a></li>
                     <li><a href="#">Security</a></li>
-                    <li><a href="#">IoT</a></li>
+                    <li><a href="#">IoT Solutions</a></li>
+                    <li><a href="#">Cloud Services</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-column">
-                <h4>Industries</h4>
+            <div class="footer-section">
+                <h3>Company</h3>
                 <ul>
-                    <li><a href="#">Banking & Finance</a></li>
-                    <li><a href="#">Healthcare</a></li>
-                    <li><a href="#">Retail</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Education</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">White Papers</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">About Vi Business</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Vi Business Assist</a></li>
+                    <li><a href="#">Help & Support</a></li>
                     <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
-            <p>&copy; 2025 Vodafone Idea Limited. All rights reserved. | Vi Business - Enterprise Solutions</p>
+            <p><strong>AI Support powered by ThynkWise on ESDS Infrastructure</strong></p>
+            <p>© 2024 Vodafone Idea Limited. All rights reserved. CIN: L32100GJ1996PLC030976</p>
         </div>
     </footer>
 
-    <!-- VIBot Floating Assistant Script -->
-    <script src="https://vibot.thynkwise.co.in/embed.js" data-bot-id="778340c8-d4c8-40ba-93c4-d3381dedfc31"></script>
+    <!-- ThynkWise AI Widget on ESDS Infrastructure -->
+    <script src="https://esds.thynkwise.ai/embed.js" data-bot-id="224f956c-d9d0-4872-9fd7-9533bfec6506"></script>
 </body>
 </html>
